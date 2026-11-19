@@ -1,12 +1,9 @@
-# Task 9
+# Task 9 — Implement and Test Fare Logic
 
-Test table covers all three zones, peak/off-peak boundaries 08:00, 10:00, 17:00 and 20:00, and an invalid zone. Negative recharge must be rejected before adding to balance; malformed hour input is demonstrated in Task08. A five-trip sample is explicitly summed. A table-driven test loop takes O(t) time and O(t) test-data space.
+The test-driven implementation validates hour range and zone before calculating the fare. It covers Inner, Middle and Outer fares, peak/off-peak windows, all four boundary times, an unknown zone, and an invalid hour. The test table is processed in O(t) time and occupies O(t) space for t test cases.
 
-## Build and run
+## Test evidence
 
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o main
-./main
-```
+See `output.txt`: **9/9** fare cases pass. The five-journey hand calculation is 1,000 + 2,400 + 2,000 + 3,600 + 3,000 = 12,000 paise (₹120.00).
 
-See `main.cpp` for the executable example. Capture terminal output after local execution for submission evidence.
+A negative recharge must be rejected before changing the card balance; the card examples in Tasks 1 and 7 keep the balance private and validate deductions. Invalid text input is demonstrated in Task 8 by entering `abc` followed by `18`; the stream error is cleared and the bad line discarded before retry.
