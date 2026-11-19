@@ -2,6 +2,7 @@
 #include <new>
 #include <stdexcept>
 #include <string>
+#include <utility>
 using namespace std;
 class ClaimError:public runtime_error{public:using runtime_error::runtime_error;};
 struct Guard{string label;Guard(string s):label(s){}~Guard(){cout<<"destroy "<<label<<'\n';}};
