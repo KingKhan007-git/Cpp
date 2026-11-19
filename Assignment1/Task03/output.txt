@@ -1,0 +1,5 @@
+sizeof(bool/int/long long/double): 1/4/8/8
+INT_MAX: 2147483647
+LLONG_MAX: 9223372036854775807
+Integer total Rs: 108000000.00
+Double total Rs: 108000000.00
