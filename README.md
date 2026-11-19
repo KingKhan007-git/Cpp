@@ -15,4 +15,11 @@ This repository contains five C++ assignments. Each assignment is maintained in 
 
 ## Compiler
 
-Compiler and version, compile commands, and execution instructions are documented separately inside each assignment folder after verification.
+Verified in this workspace: **g++ 14.2.0**. Assignment 1 uses C++17 and was compiled with:
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o main
+./main
+```
+
+See each assignment README for its task index and evidence status.
