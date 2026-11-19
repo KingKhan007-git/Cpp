@@ -1,3 +1,4 @@
+#include <climits>
 #include <iostream>
 enum class Zone { Inner, Middle, Outer, Invalid };
 long long calculateFare(Zone zone, int hour) {
@@ -11,6 +12,11 @@ long long calculateFare(Zone zone, int hour) {
     }
     const bool peak = (hour >= 8 && hour < 10) || (hour >= 17 && hour < 20);
     return peak ? base * 120 / 100 : base;
+}
+bool recharge(long long& balance, long long amount) {
+    if (amount < 0 || balance > LLONG_MAX - amount) return false;
+    balance += amount;
+    return true;
 }
 int main() {
     struct Test { const char* name; Zone zone; int hour; long long expected; };
@@ -27,6 +33,10 @@ int main() {
         const bool ok = actual == t.expected; passed += ok;
         std::cout << t.name << ": expected=" << t.expected << " actual=" << actual << " " << (ok ? "PASS" : "FAIL") << '\n';
     }
-    std::cout << "Tests passed: " << passed << '/' << (sizeof(tests) / sizeof(tests[0])) << '\n';
+    std::cout << "Fare tests passed: " << passed << '/' << (sizeof(tests) / sizeof(tests[0])) << '\n';
+    long long balance = 10000;
+    const bool accepted = recharge(balance, -500);
+    std::cout << "Negative recharge accepted? " << std::boolalpha << accepted
+              << "; balance unchanged? " << (balance == 10000) << '\n';
     std::cout << "Five-trip hand total paise: " << 1000 + 2400 + 2000 + 3600 + 3000 << '\n';
 }
