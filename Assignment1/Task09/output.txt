@@ -7,5 +7,6 @@ Inner 17:00: expected=1200 actual=1200 PASS
 Inner 20:00: expected=1000 actual=1000 PASS
 Unknown zone: expected=-1 actual=-1 PASS
 Invalid hour: expected=-1 actual=-1 PASS
-Tests passed: 9/9
+Fare tests passed: 9/9
+Negative recharge accepted? false; balance unchanged? true
 Five-trip hand total paise: 12000
