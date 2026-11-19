@@ -1,12 +1,20 @@
-# Task 4
+# Task 4 — Control Implicit Conversions
 
-Predicted output before execution: 3 3.5; C 68; 1 true; s >= u. Integer division truncates 7/2 to 3 before conversion to double. static_cast<double>(a) forces floating division. char promotes to int in ch+1. 5 converts to bool true. Comparing signed -1 with unsigned 1 converts -1 to a large unsigned value, so s<u is false. Use explicit casts and brace initialization to expose conversions.
+**Predicted output, written before execution**
 
-## Build and run
-
-```bash
-g++ -std=c++17 -Wall -Wextra -pedantic main.cpp -o main
-./main
+```text
+3 3.5
+C 68
+1 true
+s >= u
 ```
 
-See `main.cpp` for the executable example. Capture terminal output after local execution for submission evidence.
+**Observed output:** matches the prediction exactly; see `output.txt`.
+
+- `a / b` is integer division, so 7 / 2 becomes 3 before assignment to double.
+- `static_cast<double>(a) / b` converts the left operand before division and produces 3.5.
+- `'A' + 2` is evaluated as an integer expression, then converted to char for initialization. In `ch + 1`, char undergoes integral promotion, giving 68.
+- Integer 5 converts to bool true. `boolalpha` changes its printed representation from 1 to true.
+- In `s < u`, the signed int is converted to unsigned int under the usual arithmetic conversions. -1 becomes a large unsigned value, so the comparison is false. g++ warns about comparing signed and unsigned values.
+
+Brace initialization such as `int count{3.7};` is rejected because it narrows. Explicit casts make intended conversions visible. These conversions do not change the O(1) time or O(1) storage of this short program.
